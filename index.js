@@ -23,9 +23,9 @@ app.use(express.urlencoded({ extended: true }));
 
     shoppingRoutes(app, channel);
     // appEvents(app);
-    app.listen(8003, () => {
-      console.log("Customer is Listening to Port 8003");
-    });
+    // app.listen(8003, () => {
+    //   console.log("Customer is Listening to Port 8003");
+    // });
   } catch (err) {
     console.log("Failed to start app:", err);
   }
