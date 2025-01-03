@@ -26,6 +26,9 @@ app.use(express.urlencoded({ extended: true }));
     // app.listen(8003, () => {
     //   console.log("Customer is Listening to Port 8003");
     // });
+    app.get("/health", (req, res) => {
+      res.send("Order Service Running");
+    });
   } catch (err) {
     console.log("Failed to start app:", err);
   }
