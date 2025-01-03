@@ -14,7 +14,7 @@ const { CreateChannel, SubscribeMessage } = require("./utils");
 require("dotenv").config();
 app.use(express.urlencoded({ extended: true }));
 
-(async function startApp() {
+async function startApp() {
   try {
     await mongoose.connect(process.env.DB_URI);
     print("Connected to  Order DB");
@@ -22,16 +22,14 @@ app.use(express.urlencoded({ extended: true }));
     const channel = await CreateChannel();
 
     shoppingRoutes(app, channel);
-    // appEvents(app);
-    // app.listen(8003, () => {
-    //   console.log("Customer is Listening to Port 8003");
-    // });
+
     app.get("/health", (req, res) => {
       res.send("Order Service Running");
     });
   } catch (err) {
     console.log("Failed to start app:", err);
   }
-})();
+}
+startApp();
 
 module.exports = app;
