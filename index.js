@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.static(__dirname + "/public"));
 
 const { CreateChannel, SubscribeMessage } = require("./utils");
-
+const port = process.env.PORT || 8002;
 require("dotenv").config();
 app.use(express.urlencoded({ extended: true }));
 
@@ -22,6 +22,9 @@ async function startApp() {
     const channel = await CreateChannel();
 
     shoppingRoutes(app, channel);
+   app.listen(port, () => {
+      console.log("Product Service is Listening to Port ${port}");
+    }); // Pass Redis client to routes
 
     app.get("/health", (req, res) => {
       res.send("Order Service Running");
@@ -31,5 +34,3 @@ async function startApp() {
   }
 }
 startApp();
-
-module.exports = app;
